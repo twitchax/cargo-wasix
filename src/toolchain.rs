@@ -724,15 +724,6 @@ impl RustupToolchain {
             dir.display()
         );
 
-        // Small sanity check.
-        let rustc_path = dir.join("bin/rustc");
-        if !rustc_path.is_file() {
-            bail!(
-                "Invalid toolchain directory: rustc executable not found at {}",
-                rustc_path.display()
-            );
-        }
-
         // If already present, unlink first.
         // This is required because otherwise rustup can get in a buggy state.
         if Self::find_by_name(name)?.is_some() {
